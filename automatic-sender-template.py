@@ -25,34 +25,31 @@ msg = """\
         <body>
         <p style="font-size: 11pt; font-family: Calibri, sans-serif;">Dear {recipient_name},
         <br><br>
-        Greetings from Singapore!
+        Greetings from Lazy Land!
         <br><br>
-        I’m Jolie, a programmer for Perspectives Film Festival (PFF), which will run from 21-31 October 2021, and I’m \
-        writing to enquire about the film, \
-        <span style="font-family: Cambria;font-size: 15px; font-weight: 700; background: rgb(255, 192, 0);">{film_name}</span>, \
+        I’m David from Lazy Land and I’m writing to enquire about the film, \
+        <span style="font-family: Cambria;font-size: 15px; font-weight: 700; background: rgb(255, 192, 0);">{film_name}({film_year})</span>, \
         directed by {director_name}.
         <br><br>
-        PFF is an annual arts event that is thematically curated, celebrating films from around the world. It is Singapore's \
-        first and longest-running film festival by students, presenting breakthroughs in cinema. For more information about \
-        our festival, please visit \
+        I love watching films and my favourite film festival can be found at \
         <a href="https://www.perspectivesfilmfestival.com/">www.perspectivesfilmfestival.com</a>.
         <br><br>
-        Due to the COVID-19 pandemic, our festival will be completely virtual this year. We will be working closely with local \
+        Due to the COVID-19 pandemic, their festival will be completely virtual this year. They will be working closely with local \
         exhibitors with Hollywood studio-grade level digital rights management (DRM) service that ensures playback only occurs \
         on an authenticated video player, geolocation locking, and is MPAA (Motion Pictures Association of America) compliant, \
         along with other security features to ensure content, payment, and privacy are secured.
         <br>
         </p>
         <p style="font-size:11pt; font-family:Calibri, sans-serif; margin-bottom: 0;">
-        We have a few queries:
+        They have a few queries:
         <ul style="font-size:11pt; font-family:Calibri, sans-serif; margin-top: 0;">
-            <li>Would the film be available for a Singapore premiere during our festival period?</li>
-            <li>How much would the screening fee be? And does this change depending on the cap on viewers, if any?</li>
-            <li>Could you send us a screener for our internal preview within the team to determine the film's suitability to our theme?</li>
+            <li>This is my first query!</li>
+            <li>This is my second query!</li>
+            <li>This is my third query!</li>
         </ul>
         </p>
         <p style="font-size: 11pt; font-family: Calibri, sans-serif; margin-bottom: 0">
-        For more info about virtual platforms that we’ll be working with:
+        For more info about virtual platforms that they will be working with:
         <ul style="font-size: 11pt; font-family: Calibri, sans-serif; margin-top: 0;">
             <li>P+ by The Projector: <a href="https://theprojector.sg/themes/now-on-vod/"">https://theprojector.sg/themes/now-on-vod/</a></li>
             <li>Kinolounge by Shaw Theatres: <a href="https://kinolounge.shaw.sg/">https://kinolounge.shaw.sg/</a></li>
@@ -63,10 +60,10 @@ msg = """\
         <br><br>
         Warm regards,
         <br>
-        <span style="font-family: Cambria; font-size: 12pt; font-weight: 700;">Jolie Fan</span><br>
+        <span style="font-family: Cambria; font-size: 12pt; font-weight: 700;">Lazy David</span><br>
         <span style="font-family: Cambria; font-size: 12pt;">Programming Executive</span><br><br>
         <img style="width: 200px; aspect-ratio: auto 200 / 89; height: 89px;" src="cid:image1"><br>
-        <span style="font-family: Cambria; font-size: 12pt;">Mobile: +65 96557996</span>
+        <span style="font-family: Cambria; font-size: 12pt;">Mobile: +65 12345678</span>
         <br>
         <a style="font-family: Cambria; font-size: 12pt;" href="https://www.perspectivesfilmfestival.com/">Website</a> | \
         <a style="font-family: Cambria; font-size: 12pt;" href="https://www.instagram.com/wkwsci.perspectivesfilmfest/">Instagram</a> | \
@@ -84,32 +81,45 @@ msg = """\
 
 # Attempt to login and send emails
 try:
+    # Setting up the server
     server = smtplib.SMTP(smtp_server, port)
     server.starttls(context=context)  # Securing the connection
     server.login(sender_email, password)
+
     # Read signature image
-    fp = open('./Logo.png', 'rb')
+    fp = open('./logo.png', 'rb')
     msgImage = MIMEImage(fp.read())
     fp.close()
+
+    # Sending email for each movie
     for index, row in recipient_info.iterrows():
         # Root message
         msgRoot = MIMEMultipart('related')
-        msgRoot['Subject'] = "Enquiry on {film_name} for Perspectives Film Festival 2021".format(
-            film_name=row["Film Name"])
+        msgRoot['Subject'] = "Enquiry on {film_name}({film_year}) for Perspectives Film Festival 2021".format(
+            film_name=row["Title"], film_year=row['Year'])
         msgRoot['From'] = sender_email
 
         # Assigning recipients to 'To'
-        recipients = row["Email"].split(",")
         msgRoot['To'] = ""
+        recipients = row["Email"].split(",")
         for recipient in recipients:
             msgRoot['To'] += recipient
+
+        # Handling CC
+        cc = ""
+        if isinstance(row["CC"], str):
+            cc = row["CC"].split(',')
+        if cc:
+            msgRoot['Cc'] = ""
+            for person in cc:
+                msgRoot["Cc"] += person
 
         # Adding body to root message
         msgAlternative = MIMEMultipart('alternative')
         msgRoot.attach(msgAlternative)
-        msg = msg.format(
-            film_name=row["Film Name"], director_name=row["Director Name"], recipient_name=row["Recipient Name"])
-        msgText = MIMEText(msg, 'html')
+        msgHere = msg.format(
+            film_name=row["Title"], director_name=row["Director"], recipient_name=row["Distributor Name"], film_year=row["Year"])
+        msgText = MIMEText(msgHere, 'html')
         msgAlternative.attach(msgText)
 
         # Define the image's ID as referenced above
@@ -117,8 +127,10 @@ try:
         msgRoot.attach(msgImage)
 
         # Sending to recipients
-        for recipient in recipients:
-            server.sendmail(sender_email, recipient, msgRoot.as_string())
+        toSend = list(row["Email"].split(","))
+        if isinstance(row["CC"], str):  # If CC exists
+            toSend += list(row["CC"].split(","))
+        server.sendmail(sender_email, toSend, msgRoot.as_string())
 except Exception as e:
     print(e)
 finally:
