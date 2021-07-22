@@ -97,22 +97,16 @@ try:
         msgRoot = MIMEMultipart('related')
         msgRoot['Subject'] = "Enquiry on {film_name}({film_year}) for Perspectives Film Festival 2021".format(
             film_name=row["Title"], film_year=row['Year'])
+
+        # Adding sender email
         msgRoot['From'] = sender_email
 
         # Assigning recipients to 'To'
-        msgRoot['To'] = ""
-        recipients = row["Email"].split(",")
-        for recipient in recipients:
-            msgRoot['To'] += recipient
+        msgRoot['To'] = row["Email"]
 
         # Handling CC
-        cc = ""
-        if isinstance(row["CC"], str):
-            cc = row["CC"].split(',')
-        if cc:
-            msgRoot['Cc'] = ""
-            for person in cc:
-                msgRoot["Cc"] += person
+        if isinstance(row["CC"], str):  # If there are people to CC
+            msgRoot['Cc'] = row["CC"]
 
         # Adding body to root message
         msgAlternative = MIMEMultipart('alternative')
