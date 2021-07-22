@@ -1,4 +1,5 @@
-﻿Title,Year,Director,Distributor Name,Email,CC,Remarks
-My First Film,1998,David Tay,David,"davidtayap@hotmail.com, dtay016@e.ntu.edu.sg","davidtayangpeng@gmail.com, dafasx7@gmail.com",Multiple Recipients & CC
-My Second Film,2008,David Tay,David,davidtayap@hotmail.com,dtay016@e.ntu.edu.sg,One Recipient & CC
-My Third Film,2018,David Tay,David,davidtayap@hotmail.com,,One Recipient
+﻿Title,Year,Director,Distributor Name,Email,CC,Remarks,Desired Result
+My First Film,1998,David Tay,David,"davidtayap@hotmail.com,dtay016@e.ntu.edu.sg","davidtayangpeng@gmail.com, dafasx7@gmail.com",Multiple Recipients & CC,Sent to all users
+My Second Film,1998,David Tay,David,davidtayap@hotmail.com,dtay016@e.ntu.edu.sg,One Recipient & CC,Sent to all users
+My Third Film,1998,David Tay,David,davidtayap@hotmail.com,,One Recipient,Sent to all users
+My Fourth Film,1998,David Tay,David,,davidtayap@hotmail.com,No Recipient,Informs user of failure
