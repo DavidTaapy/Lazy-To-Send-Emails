@@ -6,8 +6,8 @@ Inputs required:
 
 - HTML file of the email content with the variables in curly braces
 - CSV file with the required information that changes from email to email
-- SMTP Information of Email / Domain Name
-- Valid Account Address & Password
+- SMTP information of email / domain name
+- Valid account address & password
 
 With these inputs, upon successful logging in, the script can send out these emails automatically!
 
@@ -19,12 +19,13 @@ Intial Script - This python script contains the code that I written initially an
 
 ## How to use ????
 
-Firstly, add the HTML email in the same directory as the python script! If you have a desired signature, add it to the same directory as well!
+Firstly, download the email as a html file in the same directory as the python script and name it as 'email.html' with the variables being encoded in curly braces with their column name of the 'recipients.csv' as illustrated in the website below! Secondly, have the recipient information ready in csv format and store it in the same directory as 'recipients.csv'! Ensure that the 'domain_list.csv' is present in the directory as well!
+
+**Tip for creating html**
+_https://www.extendoffice.com/documents/outlook/3623-outlook-save-email-as-html.html_
 
 Then run the script, and enter the following information after you are prompted:
 
-- Name of the HTML files
-- Name of the images
 - Your email domain
 - Your email address
 - Your email password
@@ -35,4 +36,8 @@ Then, your email will be sent out !!!!
 
 The script was tested using the recipients.csv in which various combinations as described by the remarks column was used to test the different use cases!
 
-For the first 3 test cases, the script should send out the emails as they have at least one recipient although in the various patterns! As for the 4th test case without a recipient, the script would print a message to inform the user of the lack of recipient!
+For the first 3 test cases, the script should send out the emails as they have at least one recipient although in the various patterns! As for the 4th test case without a recipient, the script would include it in a failure.csv file which is used to contain all rows that have failed!
+
+## Authentication error even with the correct username and password ????
+
+For certain domains such as Gmail, it is set by default to not allow python scripts to send out emails remotely and so users have to allow for 'less secure apps' for the script to function!
