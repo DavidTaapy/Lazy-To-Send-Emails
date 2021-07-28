@@ -44,6 +44,6 @@ For certain domains such as Gmail, it is set by default to not allow python scri
 
 ## Snapshots
 
-![Received Emails](/Snapshots/Received Emails.PNG)
+![Received Emails](/Snapshots/Received-Emails.PNG)
 
-![Sent Emails](/Snapshots/Sent Emails.PNG)
+![Sent Emails](/Snapshots/Sent-Emails.PNG)
