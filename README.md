@@ -41,3 +41,9 @@ For the first 3 test cases, the script should send out the emails as they have a
 ## Authentication error even with the correct username and password ????
 
 For certain domains such as Gmail, it is set by default to not allow python scripts to send out emails remotely and so users have to allow for 'less secure apps' for the script to function!
+
+## Snapshots
+
+![Received Emails](/Snapshots/Received Emails.PNG)
+
+![Sent Emails](/Snapshots/Sent Emails.PNG)
