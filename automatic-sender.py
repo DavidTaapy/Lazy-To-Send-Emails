@@ -158,6 +158,7 @@ def send_emails(sender_email, password, smtp_server, port):
     failed_rows = recipient_info['Failure Reason'].apply(
         lambda x: type(x) == str)
     failed = recipient_info.loc[failed_rows]
+    failed.to_csv('Failure.csv')
 
 
 if __name__ == '__main__':
