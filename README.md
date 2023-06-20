@@ -17,7 +17,7 @@ Initial Jupyter - This jupyter notebook file contains the code that I written in
 
 Intial Script - This python script contains the code that I written initially and it was tested and it worked! However, further automation and modularization of the code was done after this stage so the updated code can be found in the python script in the main directory!
 
-## How to use ????
+## How to use?
 
 Firstly, download the email as a html file in the same directory as the python script and name it as 'email.html' with the variables being encoded in curly braces with their column name of the 'recipients.csv' as illustrated in the website below! Secondly, have the recipient information ready in csv format and store it in the same directory as 'recipients.csv'! Ensure that the 'domain_list.csv' is present in the directory as well!
 
@@ -38,7 +38,7 @@ The script was tested using the recipients.csv in which various combinations as 
 
 For the first 3 test cases, the script should send out the emails as they have at least one recipient although in the various patterns! As for the 4th test case without a recipient, the script would include it in a failure.csv file which is used to contain all rows that have failed!
 
-## Authentication error even with the correct username and password ????
+## Authentication error even with the correct username and password?
 
 For certain domains such as Gmail, it is set by default to not allow python scripts to send out emails remotely and so users have to allow for 'less secure apps' for the script to function!
 
