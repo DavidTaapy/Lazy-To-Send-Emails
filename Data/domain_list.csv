@@ -1,0 +1,4 @@
+﻿Domain_Name,SMTP_Address,Port_TLS
+outlook,smtp-mail.outlook.com,587
+hotmail,smtp-mail.outlook.com,587
+gmail,smtp.gmail.com,587
