@@ -31,7 +31,8 @@ function App() {
       setSubmitting(false);
       setFormData({
         reset: true
-      })
+      });
+      alert('You have submitted the form.');
     }, 3000);
   }
 
