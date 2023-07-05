@@ -42,7 +42,13 @@ For the first 3 test cases, the script should send out the emails as they have a
 
 For certain domains such as Gmail, it is set by default to not allow python scripts to send out emails remotely and so users have to allow for 'less secure apps' for the script to function!
 
+## Major Update
+
+To allow the application to be more useful to users, a simple frontend was created to allow users to enter their email details, select their domain as well as craft the email they want to send! Users can use curly braces to indicate the variables in the email and supplement it with a file containing the variable combinations in order for the email to be sent out with the customised details!
+
 ## Snapshots
+
+![Frontend](/Snapshots/Frontend.PNG)
 
 ![Received Emails](/Snapshots/Received-Emails.PNG)
 
