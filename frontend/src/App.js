@@ -44,7 +44,7 @@ function App() {
 
   return (
     <div className="wrapper">
-      {
+      {/* {
         submitting ? 
         <div>
           You are submitting the following:
@@ -55,7 +55,7 @@ function App() {
           </ul>
         </div> 
         : null
-      }
+      } */}
       <form className="form-box" onSubmit={handleSubmit}>
         <h5>Automatic Email Sender</h5>
         <fieldset disabled={submitting}>
