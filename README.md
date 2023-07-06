@@ -28,7 +28,7 @@ Intial Script - This python script contains the code that I written initially an
 
 ## Snapshots
 
-![Frontend](/Snapshots/Frontend.PNG)
+![Frontend Image](/Snapshots/Frontend.PNG)
 
 ![Received Emails](/Snapshots/Received-Emails.PNG)
 
