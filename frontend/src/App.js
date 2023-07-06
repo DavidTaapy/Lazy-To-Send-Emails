@@ -1,5 +1,6 @@
 import React from 'react';
-import { useReducer, useState, useEffect } from 'react';
+import { useReducer, useState } from 'react';
+import APIService from './Components/APIService';
 import './App.css';
 import './Form.css';
 
@@ -27,6 +28,8 @@ function App() {
   const handleSubmit = event => {
     event.preventDefault();
     setSubmitting(true);
+
+    APIService.SendDetails(formData);
 
     setTimeout(() => {
       setSubmitting(false);
