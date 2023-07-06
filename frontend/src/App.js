@@ -1,5 +1,5 @@
 import React from 'react';
-import { useReducer, useState } from 'react';
+import { useReducer, useState, useEffect } from 'react';
 import './App.css';
 import './Form.css';
 
@@ -9,6 +9,7 @@ const formReducer = (state, event) => {
       'domain': '',
       'email': '',
       'password': '',
+      'subject': '',
       'content': ''
     }
   }
@@ -76,6 +77,10 @@ function App() {
           <label>
             <p>Password</p>
             <input name="password" type="password" onChange={handleChange} value={formData.password || ''}></input>
+          </label>
+          <label>
+            <p>Email Subject</p>
+            <input name="subject" onChange={handleChange} value={formData.subject || ''}></input>
           </label>
           <label>
             <p>Email Content</p>
