@@ -11,7 +11,7 @@ app = Flask(__name__)
 cors.init_app(app)
 
 # Route to handle email sending
-@app.route("/sendEmails", methods=["POST"])
+@app.route("/sendEmails/", methods=["POST"])
 def sendEmails():
     # Get the user inputs required
     domain = request.json['domain']

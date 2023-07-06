@@ -2,3 +2,4 @@
 .ipynb_checkpoints/automatic-sender-jupyter-checkpoint.ipynb
 .Rhistory
 frontend/public/
+*.pyc

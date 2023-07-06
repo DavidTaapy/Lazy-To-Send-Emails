@@ -3,7 +3,6 @@ import smtplib
 import ssl
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from email.mime.image import MIMEImage
 import pandas
 
 
@@ -82,3 +81,15 @@ def send_emails(sender_email, password, smtp_server, port, subject, content):
             if isinstance(row["CC"], str):  # If CC exists
                 toSend += list(row["CC"].split(","))
             server.sendmail(sender_email, toSend, msgRoot.as_string())
+    except Exception as e:
+        print(e)
+    finally:
+        server.quit()
+    # Output failure list
+    failed_rows = data['Failure Reason'].apply(
+        lambda x: type(x) == str)
+    failed = data.loc[failed_rows]
+    failed.to_csv('./Data/Failure.csv')
+    if len(failed) != 0:
+        return True
+    return False
